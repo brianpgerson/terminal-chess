@@ -14,7 +14,7 @@ class Game
 
   def take_turn
     notify_mate if @board.checkmate_for(@curr_player.color)
-    notify_check elsif @board.board_in_check_for(@curr_player.color)
+    notify_check if @board.board_in_check_for(@curr_player.color)
 
     @pos = pick_a_spot
     piece = select_a_piece(@pos)
