@@ -1,5 +1,4 @@
 require_relative "display"
-require "byebug"
 class Player
   attr_reader :display, :color
 

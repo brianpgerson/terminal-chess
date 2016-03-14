@@ -1,10 +1,10 @@
-require 'byebug'
 require_relative "board"
 require_relative "player"
 
 class Game
-  attr_reader :board
+  attr_reader :board, :won
   def initialize
+    @won = false
     @board = Board.new
     @player_w = Player.new(@board, :white)
     @player_b = Player.new(@board, :black)
@@ -13,34 +13,31 @@ class Game
   end
 
   def take_turn
-    if @board.checkmate_for(@curr_player.color)
-      notify_mate
-    elsif @board.board_in_check_for(@curr_player.color)
-      notify_check
-    end
+    notify_mate if @board.checkmate_for(@curr_player.color)
+    notify_check elsif @board.board_in_check_for(@curr_player.color)
+
     @pos = pick_a_spot
     piece = select_a_piece(@pos)
-    almost_valid = piece.valid_moves
 
-    moves = almost_valid.reject do |pos|
-      pos == (@board.get_king(@other_player.color).position)
+    valid_moves = piece.valid_moves.reject do |pos|
+      pos == @board.get_king(@other_player.color).position
     end
 
-    @curr_player.highlight_poss(moves)
+    @curr_player.highlight_poss(valid_moves)
   begin
-    set_the_piece(moves, piece)
+    set_the_piece(valid_moves, piece)
   rescue
-    puts "Pick a valid move, or select the current piece's spot to select a different piece."
+    puts "Pick a valid move, or select the current piece's spot to deselect it."
     sleep(1)
     retry
   end
     @curr_player.unhighlight_poss
-
     player_switch
   end
 
 
   def notify_mate
+    @won = true
     puts "CHECKMATE"
     sleep(5)
     exit
@@ -96,7 +93,7 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   game = Game.new
-
-  100.times { game.take_turn }
-
+  until game.won
+    ame.take_turn
+  end
 end

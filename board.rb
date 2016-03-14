@@ -35,8 +35,7 @@ class Board
   end
 
   def all_pieces_of_a_color(color)
-    #TODO maybe just one condition here?
-    @grid.flatten.select { |piece| piece.color == color && piece.color != nil }
+    @grid.flatten.select { |piece| piece.color == color }
   end
 
   def get_king(color)
