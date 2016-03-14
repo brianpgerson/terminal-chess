@@ -4,6 +4,9 @@ Have you ever wished you could simply fire up a new terminal tab and play a beau
 
 Wish granted, friend: introducing *Terminal Chess*.
 
+![chess]
+[chess]: ./chess.png
+
 ## Run This Code
 
 First things first, you'll want to clone this repo:

@@ -94,6 +94,6 @@ end
 if __FILE__ == $PROGRAM_NAME
   game = Game.new
   until game.won
-    ame.take_turn
+    game.take_turn
   end
 end
