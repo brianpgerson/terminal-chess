@@ -28,7 +28,7 @@ class Display
     if [i, j] == @cursor_pos
       bg = :light_red
     elsif @to_highlight.include?([i,j])
-      bg = :green
+      bg = :light_magenta
     elsif (i + j).odd?
       bg = :light_blue
     else
