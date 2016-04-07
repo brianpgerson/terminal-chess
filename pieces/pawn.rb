@@ -1,5 +1,4 @@
 require_relative "pieces"
-require "byebug"
 class Pawn < Piece
   attr_accessor :first_move, :initial_row
 

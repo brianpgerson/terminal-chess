@@ -1,5 +1,4 @@
 require_relative "pieces"
-require 'byebug'
 
 class Rook < Piece
   include SlidingMoves

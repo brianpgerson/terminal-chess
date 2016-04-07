@@ -1,4 +1,3 @@
-require 'byebug'
 require "colorize"
 require_relative "./pieces/pieces"
 require_relative "display"

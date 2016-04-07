@@ -1,4 +1,4 @@
-require "byebug"
+
 module SlidingMoves
 
   def diagonals
